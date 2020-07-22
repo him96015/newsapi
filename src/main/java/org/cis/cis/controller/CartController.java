@@ -5,6 +5,7 @@ package org.cis.cis.controller;
 import java.util.List;
 
 import org.cis.cis.model.Customer;
+import org.cis.cis.repository.CustomerRepository;
 import org.cis.cis.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,20 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/api/cart")
 @Slf4j
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 
-public class CustomerController {
+public class CartController {
 
-	@Autowired
-	private CustomerService customerService;
-	
-	@GetMapping("/findByName")
-	public ResponseEntity <List<Customer>> findByName (@RequestBody String name){
-		
-		return new ResponseEntity <List<Customer>>(customerService.findByName(name),HttpStatus.OK);
-	}
 	
 	
 }

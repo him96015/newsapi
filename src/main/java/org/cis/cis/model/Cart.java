@@ -11,26 +11,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-
-public class Customer {
+@AllArgsConstructor
+public class Cart {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String name;
-	private Integer age;
 	
-//	@OneToMany(mappedBy = "customer")
-//	private List<Product> products;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id",referencedColumnName = "id" )
+	private Customer customer;
 	
-	@OneToOne(mappedBy = "customer")
-	private Cart cart;
+	@OneToMany(mappedBy = "cart")
+	private List<Product> products;
+	
 }
