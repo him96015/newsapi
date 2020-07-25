@@ -1,10 +1,14 @@
 package org.cis.cis.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +34,6 @@ public class Product {
 //	@JoinColumn(name="customer_id",nullable=false)
 //	private Customer customer;
 	
-	@ManyToOne
-	@JoinColumn(name="cart_id",nullable=false)
-	private Cart cart;
+	@ManyToMany(mappedBy = "products")
+	private List<Cart> carts;
 }

@@ -31,6 +31,7 @@ public class Customer {
 //	@OneToMany(mappedBy = "customer")
 //	private List<Product> products;
 	
-	@OneToOne(mappedBy = "customer")
-	private Cart cart;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "cart_id",referencedColumnName = "id" )
+	private Cart cart=new Cart();
 }
