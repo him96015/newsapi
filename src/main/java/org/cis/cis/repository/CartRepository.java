@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource(collectionResourceRel = "cart",path = "cart")
 
 public interface CartRepository extends PagingAndSortingRepository<Cart, Long> {
-
+	
 }

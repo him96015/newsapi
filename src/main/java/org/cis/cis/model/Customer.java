@@ -1,6 +1,5 @@
 package org.cis.cis.model;
 
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -28,10 +26,7 @@ public class Customer {
 	private String name;
 	private Integer age;
 	
-//	@OneToMany(mappedBy = "customer")
-//	private List<Product> products;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cart_id",referencedColumnName = "id" )
+	@OneToOne(cascade = CascadeType.ALL)  //owner is Customer : first Customer than cart
+	@JoinColumn(name = "cart_id",referencedColumnName = "id" ) // n existence of cart without customer 
 	private Cart cart=new Cart();
 }

@@ -2,7 +2,6 @@ package org.cis.cis.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -28,14 +26,14 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToOne(mappedBy = "cart")
-	
+	@OneToOne(mappedBy = "cart") // here owner is Customer, so cart is mapped.
 	private Customer customer;
 	
-	@ManyToMany
-	@JoinTable(name="cart_product",
-	joinColumns = @JoinColumn(name="cart_id",referencedColumnName = "id"),
-	inverseJoinColumns = @JoinColumn(name="product_id",referencedColumnName = "id")
+	@ManyToMany		// owner is cart. First cart is created and then products will be added 
+	@JoinTable(		// join table will come in owner part.
+			name="cart_product",
+			joinColumns = @JoinColumn(name="cart_id",referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name="product_id",referencedColumnName = "id")
 			)
 	private List<Product> products;
 	
